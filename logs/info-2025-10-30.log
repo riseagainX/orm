@@ -1,0 +1,25 @@
+[2025-10-30 12:29:10] [DBS-Bank-API] [INFO] Connected to database
+  Data: {
+  "database": "dbs_bank"
+}
+[2025-10-30 12:29:10] [DBS-Bank-API] [INFO] All models loaded and synced successfully
+[2025-10-30 12:29:10] [DBS-Bank-API] [INFO] API Base URL: http://localhost:5000/dbsbank-api/api/v1/home/content/HOME
+[2025-10-30 12:29:36] [DBS-Bank-API] [INFO] checkUserAndSendOtp.requestLoginOtp started
+  Data: {
+  "given_mobile": "8439647041",
+  "given_type": "LOGIN"
+}
+[2025-10-30 12:29:36] [DBS-Bank-API] [INFO] checkUserAndSendOtp.generateAndStoreOtp started
+  Data: {
+  "mobile": "8439647041",
+  "section": "LOGIN"
+}
+[2025-10-30 12:29:46] [DBS-Bank-API] [INFO] verifyOtp.service.verifyOtp started
+  Data: {
+  "phoneNo": "8439647041"
+}
+[2025-10-30 12:30:26] [DBS-Bank-API] [INFO] getCartItemsService.getCartItems started
+  Data: {
+  "given_user_id": 1,
+  "given_cart_item_id": null
+}

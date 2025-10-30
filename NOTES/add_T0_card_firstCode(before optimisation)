@@ -1,0 +1,263 @@
+
+// CONTROLLER FILE
+// WORKING CODE ( BUT NOT OPTIMISED)
+
+const addToCartService=require('../../services/cartService/addToCartService');
+class AddToCart {
+  async addToCart(req, res) {
+    try {
+      const {
+        given_user_id,
+        given_product_id,
+        given_quantity,
+        given_promocode,
+        given_display_type,
+        given_delivery_name,
+        given_delivery_email,
+        given_delivery_phone,
+        given_cart_mode,
+        given_gift_status,
+        given_gift_text,
+        given_gift_img_url,
+        given_sender_name,
+        given_delivery_date,
+      } = req.body;
+
+      console.log("Debug - Request body:", req.body);
+
+      if ( !given_user_id ||!given_product_id ||!given_quantity  ||!given_gift_status) {
+        return res.status(400).json({
+          success: false,
+          message: 'All required fields (user_id, product_id, quantity, cart_mode, gift_status) are required.',
+          data: null
+        });
+    }
+
+    const result = await addToCartService.addToCart(given_user_id, given_product_id, given_quantity, given_promocode, given_display_type, given_delivery_name, given_delivery_email,given_delivery_phone,given_cart_mode, given_gift_status, given_gift_text, given_gift_img_url, given_sender_name, given_delivery_date);
+    return res.status(200).json({
+      success: true,
+      message: result.message
+    });
+      
+    } catch (error){
+        console.error('Error in addToCart controller:', error);
+        res.status(500).json({
+          success: false,
+          message: 'Internal server error',
+          error: error.message
+        });
+  
+    }
+  }
+}
+
+module.exports = new AddToCart();
+
+
+
+
+
+// SERVICE FILE 
+
+
+const { Sequelize, Op,literal, where } = require('sequelize');
+const {CartItem,Product,Brand,Promotion,Promocode,PromotionXProduct}= require('../../models');
+
+class AddToCartService {
+     async addToCart(given_user_id, given_product_id, given_quantity, given_promocode, given_display_type, given_delivery_name, given_delivery_email,given_delivery_phone,given_cart_mode, given_gift_status, given_gift_text, given_gift_img_url, given_sender_name, given_delivery_date) {
+    try {
+
+        console.log('Debug - Request body:(add to cart Service)', given_user_id, given_product_id, given_quantity, given_promocode, given_display_type, given_delivery_name, given_delivery_email,given_delivery_phone,given_cart_mode, given_gift_status, given_gift_text, given_gift_img_url, given_sender_name, given_delivery_date);
+
+
+    
+    const productCount = await Product.count({
+        attributes: ['id'],
+        where: { id: given_product_id,
+                expiry_date: { [Op.gte]: literal('CURDATE()')},  
+                            available_qty: { [Op.gte]: given_quantity }
+                         },
+        include: [{
+            model: Brand,
+            attributes: [],
+            where :{
+                status: 'A',
+                is_show: 'Y'
+            }
+        }]
+    });
+    console.log('Debug - Product count:����✅✅', productCount);
+    if(productCount === 0) {
+        // **changes need - for now we are using res.json , but after successful implementation, we will return object containing key-value**
+        return res.json.status(404).json({ message: 'Product not found or not available' });
+     }
+    // console.log('Debug - Product data:✅✅', productData.get({plan:true}));
+
+    const cartItemData= await CartItem.findOne({
+        attributes: ['id'],
+        where:{
+            user_id: given_user_id,
+            product_id: given_product_id
+        }
+    })
+
+    const cart_item_id = cartItemData? cartItemData.get({plain:true}) : null;
+
+    console.log('Debug - Cart item Id 🔁', cart_item_id);
+
+    if(given_promocode!=null)
+    {
+        const productData = await Product.findAll({
+            // attributes:['id'],
+            attributes:['id'],
+            where:{
+                status: 'A',
+                expiry_date: { [Op.gte]: literal('CURDATE()')},
+                available_qty: { [Op.gte]: 0 }
+            },
+            include: [{
+                model: PromotionXProduct,
+                required:true,
+                where:{product_id: given_product_id,
+                    status:'A',
+                  },
+                    on: {
+                // This generates the SQL: ON Promotion.id = PromotionXProduct.promotion_id
+                id: literal('`PromotionXProduct`.`promotion_id`')
+              },
+                attributes: [['id','promotionId']],
+                include:[{
+                    model: Promotion,
+                     required:true,
+                     attributes: ['display_type','value'],
+                     where:{
+                        status:'A'
+                     },
+                     include:[{
+                        model: Promocode,
+                        required:true,
+                        attributes: [['id','promocode_id']],
+                        where:{
+                            Promocode:given_promocode,
+                            status:'VALID',
+                            start_date: { [Op.lte]: literal('CURDATE()')},
+                            expiry_date: { [Op.gte]: literal('CURDATE()')},
+                            usage_type: { [Op.in]: ['M', 'S'] },
+                            blasted: 'Y'
+                        }
+                     }]    
+                }]           
+            }]
+        })
+
+        
+
+        const cleanData= productData.map(item => {
+             return item.get({plain:true});
+        }) 
+
+        const promoId = cleanData[0]                                  
+                     .PromotionXProducts[0]                     
+                     .Promotion                                
+                     .Promocodes[0]                          
+                     .promocode_id;   
+                     console.log('Debug - Promocode ID: 😃', promoId);
+                     console.log('Debug - No promocode found for product, adding item to cart directly');
+                     if(promoId)
+                     {
+                       if(!cart_item_id)
+                       {
+                        const createCartItem = await CartItem.create({
+                            product_id: given_product_id,
+                            user_id: given_user_id,
+                            quantity: given_quantity,
+                            promocode_id:promoId,   /// take a global variable and set it null but if found promodeId the set it and by this you would have to wriiten a create item for one time  (not here   - outside of this if block)
+                            delivery_name : given_delivery_name,
+                            delivery_phone: given_delivery_phone,
+                            delivery_email: given_delivery_email,
+                            delivery_sender_name:given_sender_name,
+                            gift: given_gift_status,
+                            gift_text: given_gift_text,
+                            gift_img_url: given_gift_img_url,
+                            buynow:given_cart_mode
+                        });
+
+                        return {
+                        message: `cart Item with promocode added to cart successfully With cart Item id - ${createCartItem.id}`
+                        }
+                        // console.log('debug - Cart item created: 🍕', createCartItem.get({plain:true}));
+                        // return {}
+                       }
+                     }
+
+console.log("Extracted Promocode ID:", promoId)
+
+        console.log('Debug - Product data:��✅', JSON.stringify(cleanData,null,2));
+        // const promotion_id = cleanData[0].PromotionXProduct;
+        // console.log('Debug - promotion Id 😶‍🌫️😶‍🌫️😒✅', promotion_id);
+    }
+                   if(cart_item_id)
+                        {
+                          const [updatedCount] = await CartItem.update({ 
+                    quantity: literal(`quantity + ${given_quantity}`) 
+                                }, { 
+                         where: {
+                        user_id: given_user_id,
+                        product_id: given_product_id
+                        } });
+
+                        return{
+                            message: `Product already exists in cart, quantity updated successfully of cart id ${cart_item_id.id}`
+                        }
+
+                        console.log('update the cart 📝📝   ', updatedCount);
+                            // return res.json.status(200).json({ message: 'Product added to cart successfully', cart_item_id: updatedCount });
+                        }
+                        else {
+                                const createCartItem = await CartItem.create({
+                            product_id: given_product_id,
+                            user_id: given_user_id,
+                            quantity: given_quantity,
+                            promocode_id:null,
+                            delivery_name : given_delivery_name,
+                            delivery_phone: given_delivery_phone,
+                            delivery_email: given_delivery_email,
+                            delivery_sender_name:given_sender_name,
+                            gift: given_gift_status,
+                            gift_text: given_gift_text,
+                            gift_img_url: given_gift_img_url,
+                            buynow:given_cart_mode
+                        });
+
+                        return {
+                            message: `Product added to cart successfully With cart Item id - ${createCartItem.id}  `
+                        }
+                        }
+
+
+
+
+
+     
+        // console.log('Debug - Product data:���� ❌', productData); 
+
+       
+
+        // console.log('Debug - Product data:����', productData.get({plain:true})); // work on findOne (not findALL)/z
+        // const productIds = productData.map(item => item.id);
+
+        // console.log('Debug - Product data:���� 💕', productIds); 
+        // const PromotionData = await Promotion.find
+        
+        // console.log('Debug - Product data:✅📝����', productData.get({plain:true})); // work on findOne (not findALL)/z
+
+    
+
+    } catch (error) {
+        console.error('Error in addToCartService:', error);
+    }
+  }
+}
+
+module.exports = new AddToCartService();
+

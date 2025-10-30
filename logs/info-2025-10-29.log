@@ -1,0 +1,77 @@
+[2025-10-29 17:34:58] [DBS-Bank-API] [INFO] Connected to database
+  Data: {
+  "database": "dbs_bank"
+}
+[2025-10-29 17:34:58] [DBS-Bank-API] [INFO] All models loaded and synced successfully
+[2025-10-29 17:34:58] [DBS-Bank-API] [INFO] API Base URL: http://localhost:5000/dbsbank-api/api/v1/home/content/HOME
+[2025-10-29 17:35:59] [DBS-Bank-API] [INFO] Connected to database
+  Data: {
+  "database": "dbs_bank"
+}
+[2025-10-29 17:35:59] [DBS-Bank-API] [INFO] All models loaded and synced successfully
+[2025-10-29 17:35:59] [DBS-Bank-API] [INFO] API Base URL: http://localhost:5000/dbsbank-api/api/v1/home/content/HOME
+[2025-10-29 18:23:52] [DBS-Bank-API] [INFO] Connected to database
+  Data: {
+  "database": "dbs_bank"
+}
+[2025-10-29 18:23:52] [DBS-Bank-API] [INFO] All models loaded and synced successfully
+[2025-10-29 18:23:52] [DBS-Bank-API] [INFO] API Base URL: http://localhost:5000/dbsbank-api/api/v1/home/content/HOME
+[2025-10-29 18:24:34] [DBS-Bank-API] [INFO] BrandsByCategoryService.getBrandsByCategory started
+  Data: {
+  "page": 1,
+  "limit": 10,
+  "displayType": "WEBSITE"
+}
+[2025-10-29 18:25:09] [DBS-Bank-API] [INFO] BrandCategoryService.getCategoriesWithBrands started
+[2025-10-29 18:25:09] [DBS-Bank-API] [INFO] BrandCategoryService.getCategoriesWithBrands fetched categories
+  Data: {
+  "count": 9
+}
+[2025-10-29 18:25:30] [DBS-Bank-API] [INFO] BrandWithProductsService.getBrandWithProducts started
+  Data: {
+  "brand_slug": "bata-gift-vouchers"
+}
+[2025-10-29 18:28:10] [DBS-Bank-API] [INFO] createOrder.service.createOrder started
+  Data: {
+  "userId": 1,
+  "cartItemIds": "1,14",
+  "displayType": "ALL",
+  "couponCode": null
+}
+[2025-10-29 18:31:17] [DBS-Bank-API] [INFO] Connected to database
+  Data: {
+  "database": "dbs_bank"
+}
+[2025-10-29 18:31:17] [DBS-Bank-API] [INFO] All models loaded and synced successfully
+[2025-10-29 18:31:17] [DBS-Bank-API] [INFO] API Base URL: http://localhost:5000/dbsbank-api/api/v1/home/content/HOME
+[2025-10-29 22:09:01] [DBS-Bank-API] [INFO] Connected to database
+  Data: {
+  "database": "dbs_bank"
+}
+[2025-10-29 22:09:01] [DBS-Bank-API] [INFO] All models loaded and synced successfully
+[2025-10-29 22:09:01] [DBS-Bank-API] [INFO] API Base URL: http://localhost:5000/dbsbank-api/api/v1/home/content/HOME
+[2025-10-29 22:20:04] [DBS-Bank-API] [INFO] createOrder.service.createOrder started
+  Data: {
+  "userId": 1,
+  "cartItemIds": "1,14",
+  "displayType": "ALL",
+  "couponCode": null
+}
+[2025-10-29 22:21:31] [DBS-Bank-API] [INFO] Connected to database
+  Data: {
+  "database": "dbs_bank"
+}
+[2025-10-29 22:21:31] [DBS-Bank-API] [INFO] All models loaded and synced successfully
+[2025-10-29 22:21:31] [DBS-Bank-API] [INFO] API Base URL: http://localhost:5000/dbsbank-api/api/v1/home/content/HOME
+[2025-10-29 22:22:04] [DBS-Bank-API] [INFO] Connected to database
+  Data: {
+  "database": "dbs_bank"
+}
+[2025-10-29 22:22:04] [DBS-Bank-API] [INFO] All models loaded and synced successfully
+[2025-10-29 22:22:04] [DBS-Bank-API] [INFO] API Base URL: http://localhost:5000/dbsbank-api/api/v1/home/content/HOME
+[2025-10-29 22:47:52] [DBS-Bank-API] [INFO] Connected to database
+  Data: {
+  "database": "dbs_bank"
+}
+[2025-10-29 22:47:52] [DBS-Bank-API] [INFO] All models loaded and synced successfully
+[2025-10-29 22:47:52] [DBS-Bank-API] [INFO] API Base URL: http://localhost:5000/dbsbank-api/api/v1/home/content/HOME

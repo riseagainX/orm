@@ -1,0 +1,20 @@
+[2025-10-30 12:29:10] [DBS-Bank-API] [SUCCESS] Database connection successful
+[2025-10-30 12:29:10] [DBS-Bank-API] [SUCCESS] Server running on port 5000
+[2025-10-30 12:29:36] [DBS-Bank-API] [SUCCESS] checkUserAndSendOtp.generateAndStoreOtp success
+  Data: {
+  "mobile": "8439647041",
+  "otp_id": 103
+}
+[2025-10-30 12:29:36] [DBS-Bank-API] [SUCCESS] checkUserAndSendOtp.requestLoginOtp OTP sent
+  Data: {
+  "given_mobile": "8439647041"
+}
+[2025-10-30 12:29:46] [DBS-Bank-API] [SUCCESS] verifyOtp.service.verifyOtp success
+  Data: {
+  "userId": 1,
+  "phoneNo": "8439647041"
+}
+[2025-10-30 12:30:26] [DBS-Bank-API] [SUCCESS] getCartItemsService.getCartItems success
+  Data: {
+  "count": 2
+}

@@ -1,0 +1,27 @@
+{
+  "development": {
+    "username": "root",
+    "password": "delhi",
+    "database": "dbs_bank",
+    "host": "localhost",
+    "dialect": "mysql",
+    "port": "3306",
+    "JWT_SECRET":"dbsbank123",
+    "encryptionKey": "encryptionKey123",
+    "serverPort": 5000
+  },
+  "test": {
+    "username": "root",
+    "password": "delhi",
+    "database": "dbs_bank",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": "delhi",
+    "database": "dbs_bank",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}  

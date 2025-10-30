@@ -1,0 +1,38 @@
+[2025-10-29 17:34:58] [DBS-Bank-API] [SUCCESS] Database connection successful
+[2025-10-29 17:34:58] [DBS-Bank-API] [SUCCESS] Server running on port 5000
+[2025-10-29 17:35:59] [DBS-Bank-API] [SUCCESS] Database connection successful
+[2025-10-29 17:35:59] [DBS-Bank-API] [SUCCESS] Server running on port 5000
+[2025-10-29 18:23:52] [DBS-Bank-API] [SUCCESS] Database connection successful
+[2025-10-29 18:23:52] [DBS-Bank-API] [SUCCESS] Server running on port 5000
+[2025-10-29 18:24:34] [DBS-Bank-API] [SUCCESS] BrandsByCategoryService.getBrandsByCategory success
+  Data: {
+  "brands": 10,
+  "total": 242
+}
+[2025-10-29 18:25:30] [DBS-Bank-API] [SUCCESS] BrandWithProductsService.getBrandWithProducts success
+  Data: {
+  "brand_id": 8,
+  "products": 6
+}
+[2025-10-29 18:28:10] [DBS-Bank-API] [SUCCESS] createOrder.service.createOrder committed
+  Data: {
+  "orderGuid": "DBS-278290615-1761742690",
+  "orderId": 53,
+  "payuAmount": 2232.5
+}
+[2025-10-29 18:31:17] [DBS-Bank-API] [SUCCESS] Database connection successful
+[2025-10-29 18:31:17] [DBS-Bank-API] [SUCCESS] Server running on port 5000
+[2025-10-29 22:09:01] [DBS-Bank-API] [SUCCESS] Database connection successful
+[2025-10-29 22:09:01] [DBS-Bank-API] [SUCCESS] Server running on port 5000
+[2025-10-29 22:20:04] [DBS-Bank-API] [SUCCESS] createOrder.service.createOrder committed
+  Data: {
+  "orderGuid": "DBS-278304530-1761756604",
+  "orderId": 54,
+  "payuAmount": 2232.5
+}
+[2025-10-29 22:21:31] [DBS-Bank-API] [SUCCESS] Database connection successful
+[2025-10-29 22:21:31] [DBS-Bank-API] [SUCCESS] Server running on port 5000
+[2025-10-29 22:22:04] [DBS-Bank-API] [SUCCESS] Database connection successful
+[2025-10-29 22:22:04] [DBS-Bank-API] [SUCCESS] Server running on port 5000
+[2025-10-29 22:47:52] [DBS-Bank-API] [SUCCESS] Database connection successful
+[2025-10-29 22:47:52] [DBS-Bank-API] [SUCCESS] Server running on port 5000

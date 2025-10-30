@@ -1,0 +1,18 @@
+[2025-10-28 18:59:16] [DBS-Bank-API] [INFO] Connected to database
+  Data: {
+  "database": "dbs_bank"
+}
+[2025-10-28 18:59:16] [DBS-Bank-API] [INFO] All models loaded and synced successfully
+[2025-10-28 18:59:16] [DBS-Bank-API] [INFO] API Base URL: http://localhost:5000/dbsbank-api/api/v1/home/content/HOME
+[2025-10-28 19:00:08] [DBS-Bank-API] [INFO] Connected to database
+  Data: {
+  "database": "dbs_bank"
+}
+[2025-10-28 19:00:08] [DBS-Bank-API] [INFO] All models loaded and synced successfully
+[2025-10-28 19:00:08] [DBS-Bank-API] [INFO] API Base URL: http://localhost:5000/dbsbank-api/api/v1/home/content/HOME
+[2025-10-28 19:00:11] [DBS-Bank-API] [INFO] Connected to database
+  Data: {
+  "database": "dbs_bank"
+}
+[2025-10-28 19:00:11] [DBS-Bank-API] [INFO] All models loaded and synced successfully
+[2025-10-28 19:00:11] [DBS-Bank-API] [INFO] API Base URL: http://localhost:5000/dbsbank-api/api/v1/home/content/HOME
